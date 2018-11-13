@@ -16,6 +16,8 @@ class SongsController < ApplicationController
   end
 
   post '/songs' do
+    song_name = params["song"]["name"]
+    artist_name = params["artist"]["name"]
     genre_ids = params["genres"] || []
     @song = Song.new(name: params[:song_name])
       genre_ids.each do |genre_id|
