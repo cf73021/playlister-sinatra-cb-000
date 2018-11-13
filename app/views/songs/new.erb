@@ -1,7 +1,9 @@
 <h1>Add a new song:</h1>
+
  <% if @error_message %>
   <%= @error_message %>
 <% end %>
+
  <form method="POST" action="/songs">
   <p>
     <label for="song[name]">Name:</label>
