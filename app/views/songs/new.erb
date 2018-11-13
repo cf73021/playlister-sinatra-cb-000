@@ -9,6 +9,10 @@
 
   <br></br>
 
+  <label for="artist[name]">Artist Name:</label>
+  <br />
+  <input type="text" name="artist[name]" id="artist[name]">
+
   <%@genres.each do |genre|%>
     <input type="checkbox" name="genre_name" value="<%=genre.id%>" id="<%=genre.name%>"><%=genre.name%></input>
   <%end%>
