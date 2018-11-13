@@ -23,6 +23,7 @@ class SongsController < ApplicationController
     song_name = params["song"]["name"]
     artist_name = params["artist"]["name"]
     genre_ids = params["genres"] || []
+
      if song_name
       @song = Song.new(name: song_name)
       if artist_name != ""
@@ -33,14 +34,16 @@ class SongsController < ApplicationController
       @genres = Genre.all
       erb :new
     end
+
      genre_ids.each do |genre_id|
       genre = Genre.find_by(id: genre_id)
       if genre
         @song.genres << genre
       end
     end
+
      @song.save
-    flash[:notice] = "Successfully created song."
+     flash[:message] = "Successfully created song."
      redirect to "/songs/#{@song.slug}"
   end
 
