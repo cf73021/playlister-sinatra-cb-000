@@ -30,6 +30,13 @@ class SongsController < ApplicationController
       @genres = Genre.all
       erb :'/songs/new'
     end
+
+    genre_ids.each do |genre_id|
+      genre = Genre.find_by(id: genre_id)
+      if genre
+        @song.genres << genre
+      end
+    end
   end
 
 end
