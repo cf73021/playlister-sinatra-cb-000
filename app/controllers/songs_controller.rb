@@ -29,5 +29,7 @@ class SongsController < ApplicationController
       @error_message = "You must enter a song name!"
       @genres = Genre.all
       erb :'/songs/new'
+    end
+  end
 
 end
