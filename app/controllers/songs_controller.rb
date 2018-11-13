@@ -24,5 +24,10 @@ class SongsController < ApplicationController
       @song = Song.new(name: params[:song_name])
       if artist_name != ""
         @song.artist = Artist.find_or_create_by(name: artist_name)
+      end
+    else
+      @error_message = "You must enter a song name!"
+      @genres = Genre.all
+      erb :'/songs/new'
 
 end
