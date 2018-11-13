@@ -37,7 +37,7 @@ class SongsController < ApplicationController
     end
      @song.save
      flash[:notice] = "Successfully created song."
-     redirect to "/songs/:slug"
+     redirect to "/songs/#{@song.slug}"
 
   end
    patch '/songs/:slug' do
