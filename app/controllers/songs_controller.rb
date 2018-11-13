@@ -24,23 +24,23 @@ class SongsController < ApplicationController
     artist_name = params["artist"]["name"]
     genre_ids = params["genres"] || []
 
-     if song_name
-      @song = Song.new(name: song_name)
-      if artist_name != ""
-        @song.artist = Artist.find_or_create_by(name: artist_name)
+       if song_name
+        @song = Song.new(name: song_name)
+        if artist_name != ""
+          @song.artist = Artist.find_or_create_by(name: artist_name)
+        end
+      else
+        @error_message = "You must enter a song name!"
+        @genres = Genre.all
+        erb :new
       end
-    else
-      @error_message = "You must enter a song name!"
-      @genres = Genre.all
-      erb :new
-    end
 
-     genre_ids.each do |genre_id|
-      genre = Genre.find_by(id: genre_id)
-      if genre
-        @song.genres << genre
+       genre_ids.each do |genre_id|
+        genre = Genre.find_by(id: genre_id)
+        if genre
+          @song.genres << genre
+        end
       end
-    end
 
      @song.save
      flash[:message] = "Successfully created song."
