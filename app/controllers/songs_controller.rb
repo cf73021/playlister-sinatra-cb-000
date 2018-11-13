@@ -15,30 +15,27 @@ class SongsController < ApplicationController
   end
 
   get '/songs/:slug/edit' do
-    @genres = Genre.all
-    @song = Song.find_by_slug(params[:slug])
-
-    if @song.artist
-      @artist_name = @song.artist.name
-    else
-      @artist_name = ""
+      @genres = Genre.all
+      @song = Song.find_by_slug(params[:slug])
+      if @song.artist
+        @artist_name = @song.artist.name
+      else
+        @artist_name = ""
+      end
+       if @song
+        erb :edit
+      else
+        redirect to :'/songs'
+      end
     end
-
-     if @song
-      erb :edit
-    else
-      redirect to :'/songs'
+     get '/songs/:slug' do
+      @song = Song.find_by_slug(params[:slug])
+       if @song
+        erb :show
+      else
+        redirect to '/songs'
+      end
     end
-  end
-
-   get '/songs/:slug' do
-    @song = Song.find_by_slug(params[:slug])
-     if @song
-      erb :show
-    else
-      redirect to '/songs'
-    end
-  end
 
   get '/songs/:slug' do
     @song = Song.find_by_slug(params[:slug])
