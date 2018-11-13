@@ -30,7 +30,7 @@ class SongsController < ApplicationController
     end
 
     if @song
-      erb :'songs/:slug/edit'
+      erb :edit'
     else
       redirect to :'/songs'
     end
