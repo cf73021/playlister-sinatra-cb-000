@@ -30,7 +30,7 @@ class SongsController < ApplicationController
     end
 
     if @song
-      erb :edit'
+      erb :edit
     else
       redirect to :'/songs'
     end
@@ -76,6 +76,7 @@ class SongsController < ApplicationController
      if artist
        @song.artist = artist
      end
+     
       @song.genres = []
      params["genres"].each do |genre_id|
        @song.genres << Genre.find(genre_id)
