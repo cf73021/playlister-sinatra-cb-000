@@ -36,10 +36,10 @@ class SongsController < ApplicationController
       end
     end
      @song.save
-     flash[:notice] = "Successfully created song."
+    flash[:notice] = "Successfully created song."
      redirect to "/songs/#{@song.slug}"
-
   end
+  
    patch '/songs/:slug' do
     @song = Song.find_by_slug(params[:slug])
     song_name = params["song"]["name"]
