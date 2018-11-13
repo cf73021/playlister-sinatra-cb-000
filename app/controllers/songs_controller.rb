@@ -37,6 +37,9 @@ class SongsController < ApplicationController
         @song.genres << genre
       end
     end
+
+    @song.save
+    redirect to "/songs/#{@song.slug}"
   end
 
 end
