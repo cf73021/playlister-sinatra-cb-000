@@ -19,14 +19,10 @@ class SongsController < ApplicationController
     song_name = params["song"]["name"]
     artist_name = params["artist"]["name"]
     genre_ids = params["genres"] || []
-    @song = Song.new(name: params[:song_name])
-      genre_ids.each do |genre_id|
-      genre = Genre.find_by(id: genre_id)
-      if genre
-        @song.genres << genre
-      end
-    end
-	    redirect to "songs/#{@song.slug}"
-  end
+
+    if song_name
+      @song = Song.new(name: params[:song_name])
+      if artist_name != ""
+        @song.artist = Artist.find_or_create_by(name: artist_name)
 
 end
