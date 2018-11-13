@@ -65,28 +65,24 @@ class SongsController < ApplicationController
   end
 
   patch '/songs/:slug' do
-
-   @song = Song.find_by_slug(params[:slug])
-   song_name = params["song"]["name"]
-   artist_name = params["artist"]["name"]
-
-    if song_name
-     @song.name = song_name
-     artist = Artist.find_or_create_by(name: params["artist"]["name"])
-     if artist
-       @song.artist = artist
-     end
-     
-      @song.genres = []
-     params["genres"].each do |genre_id|
-       @song.genres << Genre.find(genre_id)
-     end
-   end
-
-    @song.save
-   flash[:message] = "Successfully updated song."
-   redirect to :"/songs/#{@song.slug}"
- end
+    @song = Song.find_by_slug(params[:slug])
+    song_name = params["song"]["name"]
+    artist_name = params["artist"]["name"]
+     if song_name
+      @song.name = song_name
+      artist = Artist.find_or_create_by(name: params["artist"]["name"])
+      if artist
+        @song.artist = artist
+      end
+       @song.genres = []
+      params["genres"].each do |genre_id|
+        @song.genres << Genre.find(genre_id)
+      end
+    end
+     @song.save
+    flash[:notice] = "Successfully updated song."
+    redirect to :"/songs/#{@song.slug}"
+  end
 
 
 end
